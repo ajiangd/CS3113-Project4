@@ -24,7 +24,7 @@ protected:
     const char *mBGColourHexCode = "#000000";
 
     void renderImage(Texture2D texture, float width, Vector2 centre);
-    vector2 getTilePosition(int col, int row);
+    Vector2 getTilePosition(int col, int row);
     void createDiver(Vector2 position);
     void createCrab(Entity *crab, Vector2 position, int speed);
     void createShark(Entity *shark, Vector2 position, int speed);
