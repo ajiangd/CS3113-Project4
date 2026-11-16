@@ -8,6 +8,7 @@ class MenuScene : public Scene
 private:
     Texture2D mTitleTexture = {};
     Texture2D mPromptTexture = {};
+    Texture2D mInstructionsTexture = {};
 
 public:
     MenuScene();

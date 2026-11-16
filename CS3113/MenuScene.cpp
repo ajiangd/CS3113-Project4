@@ -15,21 +15,23 @@ void MenuScene::initialise()
     mGameState.nextSceneID = NO_SCENE;
     mGameState.isPlayerHit = false;
 
-    mGameState.diver      = nullptr;
-    mGameState.map        = nullptr;
-    mGameState.enemies    = nullptr;
+    mGameState.diver = nullptr;
+    mGameState.map = nullptr;
+    mGameState.enemies = nullptr;
     mGameState.enemyCount = 0;
 
     mTitleTexture = LoadTexture("assets/game/title.png");
     mPromptTexture = LoadTexture("assets/game/start.png");
+    mInstructionsTexture = LoadTexture("assets/game/instructions.png");
 }
 
 void MenuScene::update(float deltaTime) {}
 
 void MenuScene::render()
 {
-    renderImage(mTitleTexture, 800.0f, { mOrigin.x, mOrigin.y - 80.0f });
-    renderImage(mPromptTexture, 600.0f, { mOrigin.x, mOrigin.y + 120.0f });
+    renderImage(mTitleTexture, 560.0f, {mOrigin.x, mOrigin.y - 215.0f});
+    renderImage(mInstructionsTexture, 560.0f, {mOrigin.x, mOrigin.y - 15.0f});
+    renderImage(mPromptTexture, 560.0f, {mOrigin.x, mOrigin.y + 215.0f});
 }
 
 void MenuScene::shutdown()

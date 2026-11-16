@@ -31,6 +31,7 @@ int gLives = MAX_LIVES;
 
 Texture2D gBackgroundTexture;
 Texture2D gHeartsTexture;
+std::map<SceneID, Texture2D> gLevelTextures = {};
 
 Music gBackgroundMusic;
 Sound gJumpSound;
@@ -42,6 +43,7 @@ void initialise();
 void processInput();
 void update();
 void renderLives();
+void renderLevel();
 void render();
 void shutdown();
 
@@ -71,6 +73,10 @@ void initialise()
 
     gBackgroundTexture = LoadTexture("assets/game/background.png");
     gHeartsTexture = LoadTexture("assets/game/hearts.png");
+
+    gLevelTextures[LEVEL_A] = LoadTexture("assets/game/level1.png");
+    gLevelTextures[LEVEL_B] = LoadTexture("assets/game/level2.png");
+    gLevelTextures[LEVEL_C] = LoadTexture("assets/game/level3.png");
 
     gBackgroundMusic = LoadMusicStream("assets/game/bgm.ogg");
     SetMusicVolume(gBackgroundMusic, 0.8f);
@@ -118,11 +124,10 @@ void processInput()
 
     diver->resetMovement();
 
-    if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) diver->moveLeft();
-    else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) diver->moveRight();
+    if (IsKeyDown(KEY_A)) diver->moveLeft();
+    else if (IsKeyDown(KEY_D)) diver->moveRight();
 
-    if ((IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_SPACE)) &&
-        diver->isCollidingBottom())
+    if (IsKeyPressed(KEY_W) && diver->isCollidingBottom())
     {
         diver->jump();
         PlaySound(gJumpSound);
@@ -181,6 +186,24 @@ void renderLives()
     }
 }
 
+void renderLevel()
+{
+    Texture2D label = gLevelTextures[gCurrentSceneID];
+
+    float width = 200.0f;
+    float height = width * label.height / label.width;
+
+    Rectangle textureArea = {
+        0.0f, 0.0f,
+        static_cast<float>(label.width),
+        static_cast<float>(label.height)
+    };
+
+    Rectangle destinationArea = {SCREEN_WIDTH - width - 20.0f, 25.0f, width, height};
+
+    DrawTexturePro(label, textureArea, destinationArea, {0.0f, 0.0f}, 0.0f, WHITE);
+}
+
 void render()
 {
     BeginDrawing();
@@ -203,7 +226,11 @@ void render()
 
     EndMode2D();
 
-    if (gCurrentScene->getState().diver != nullptr) renderLives();
+    if (gCurrentScene->getState().diver != nullptr)
+    {
+        renderLives();
+        renderLevel();
+    }
 
     EndDrawing();
 }
@@ -217,6 +244,10 @@ void shutdown()
 
     UnloadTexture(gBackgroundTexture);
     UnloadTexture(gHeartsTexture);
+        
+    for (std::pair<const SceneID, Texture2D> &entry : gLevelTextures) UnloadTexture(entry.second);
+
+    gLevelTextures.clear();
 
     UnloadMusicStream(gBackgroundMusic);
     UnloadSound(gJumpSound);

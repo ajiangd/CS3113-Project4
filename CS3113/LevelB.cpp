@@ -29,10 +29,10 @@ void LevelB::initialise()
     mGameState.enemyCount = ENEMY_COUNT;
     mGameState.enemies = new Entity[ENEMY_COUNT];
 
-    createCrab(&mGameState.enemies[0], getTilePosition(16, 7), 100);
-    createCrab(&mGameState.enemies[1], getTilePosition(36, 7), 100);
-    createShark(&mGameState.enemies[2], getTilePosition(25, 4), 130);
-    createShark(&mGameState.enemies[3], getTilePosition(44, 5), 120);
+    createCrab(&mGameState.enemies[0], getTilePosition(18, 7), 70);
+    createCrab(&mGameState.enemies[1], getTilePosition(40, 7), 70);
+    createShark(&mGameState.enemies[2], getTilePosition(25, 2), 130);
+    createShark(&mGameState.enemies[3], getTilePosition(44, 2), 120);
     createJellyfish(&mGameState.enemies[4], getTilePosition(43, 2), 0.6f);
 }
 
