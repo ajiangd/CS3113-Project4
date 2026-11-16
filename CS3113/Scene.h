@@ -6,10 +6,10 @@
 struct GameState
 {
     Entity *diver;
-    Map    *map;
+    Map *map;
 
     Entity *enemies;
-    int     enemyCount;
+    int enemyCount;
 
     bool isPlayerHit;
 
@@ -19,8 +19,8 @@ struct GameState
 class Scene
 {
 protected:
-    GameState   mGameState;
-    Vector2     mOrigin;
+    GameState mGameState;
+    Vector2 mOrigin;
     const char *mBGColourHexCode = "#000000";
 
     void renderImage(Texture2D texture, float width, Vector2 centre);
@@ -34,6 +34,9 @@ protected:
     void shutdownLevel();
 
 public:
+    static constexpr float TILE_DIMENSION = 64.0f,
+                           ACCELERATION_OF_GRAVITY = 600.0f,
+                           END_GAME_THRESHOLD = 750.0f;
     Scene();
     Scene(Vector2 origin, const char *bgHexCode);
     virtual ~Scene() {}
@@ -43,9 +46,9 @@ public:
     virtual void render() = 0;
     virtual void shutdown() = 0;
 
-    GameState   getState()           const { return mGameState;       }
-    Vector2     getOrigin()          const { return mOrigin;          }
-    const char *getBGColourHexCode() const { return mBGColourHexCode; }
+    GameState getState() const {return mGameState;}
+    Vector2 getOrigin() const {return mOrigin;}
+    const char *getBGColourHexCode() const { return mBGColourHexCode;}
 };
 
 #endif

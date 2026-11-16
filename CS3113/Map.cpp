@@ -10,10 +10,10 @@ Map::Map(
     int           textureRows,
     Vector2       origin
 )
-    : mMapColumns{ mapColumns }, mMapRows{ mapRows }, mLevelData{ levelData },
-      mTextureAtlas{ LoadTexture(textureFilePath) }, mTileSize{ tileSize },
-      mTextureColumns{ textureColumns }, mTextureRows{ textureRows },
-      mOrigin{ origin }
+    : mMapColumns{mapColumns}, mMapRows{mapRows}, mLevelData{levelData},
+      mTextureAtlas{LoadTexture(textureFilePath)}, mTileSize{tileSize},
+      mTextureColumns{textureColumns}, mTextureRows{textureRows},
+      mOrigin{origin}
 {
     build();
 }
@@ -25,9 +25,9 @@ Map::~Map()
 
 void Map::build()
 {
-    mLeftBoundary   = mOrigin.x - (mMapColumns * mTileSize) / 2.0f;
-    mRightBoundary  = mOrigin.x + (mMapColumns * mTileSize) / 2.0f;
-    mTopBoundary    = mOrigin.y - (mMapRows * mTileSize) / 2.0f;
+    mLeftBoundary = mOrigin.x - (mMapColumns * mTileSize) / 2.0f;
+    mRightBoundary = mOrigin.x + (mMapColumns * mTileSize) / 2.0f;
+    mTopBoundary = mOrigin.y - (mMapRows * mTileSize) / 2.0f;
     mBottomBoundary = mOrigin.y + (mMapRows * mTileSize) / 2.0f;
 
     for (int row = 0; row < mTextureRows; row++)
