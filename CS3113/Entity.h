@@ -176,12 +176,19 @@ public:
         { mAIType = newType;                       }
     void setLerpFactor(float newLerpFactor)
         { mLerpFactor = newLerpFactor;             }
+    void setTextureType(TextureType newTextureType)
+        { mTextureType = newTextureType;           }
+    void setAnimationAtlas(std::map<Direction, std::vector<int>> newAnimationAtlas){
+    { mAnimationAtlas = newAnimationAtlas;
+          mAnimationIndices = mAnimationAtlas.at(mDirection);
+    }
     void setDirection(Direction newDirection)
     {
         mDirection = newDirection;
 
         if (mTextureType == ATLAS)
             mAnimationIndices = mAnimationAtlas.at(mDirection);
+    }
     }
 };
 
