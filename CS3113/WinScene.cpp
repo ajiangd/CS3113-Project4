@@ -15,9 +15,9 @@ void WinScene::initialise()
     mGameState.nextSceneID = NO_SCENE;
     mGameState.isPlayerHit = false;
 
-    mGameState.diver      = nullptr;
-    mGameState.map        = nullptr;
-    mGameState.enemies    = nullptr;
+    mGameState.diver = nullptr;
+    mGameState.map  = nullptr;
+    mGameState.enemies = nullptr;
     mGameState.enemyCount = 0;
 
     mMessageTexture = LoadTexture("assets/game/win.png");
@@ -28,8 +28,8 @@ void WinScene::update(float deltaTime) {}
 
 void WinScene::render()
 {
-    renderImage(mMessageTexture, 700.0f, { mOrigin.x, mOrigin.y - 80.0f });
-    renderImage(mPromptTexture, 600.0f, { mOrigin.x, mOrigin.y + 120.0f });
+    renderImage(mMessageTexture, 700.0f, {mOrigin.x, mOrigin.y - 80.0f});
+    renderImage(mPromptTexture, 600.0f, {mOrigin.x, mOrigin.y + 120.0f});
 }
 
 void WinScene::shutdown()
